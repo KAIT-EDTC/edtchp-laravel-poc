@@ -1,7 +1,6 @@
 {
   "version": 2,
   "framework": null,
-  "installCommand": "composer install --no-dev --optimize-autoloader",
   "buildCommand": "",
   "outputDirectory": ".",
   "functions": {
@@ -40,14 +39,18 @@
     }
   ],
   "env": {
-    "APP_ENV": "staging",
-    "APP_DEBUG": "false",
+    "APP_ENV": "production",
+    "APP_DEBUG": "true",
+    "APP_KEY": "",
     "LOG_CHANNEL": "stderr",
-    "LOG_LEVEL": "error",
+    "LOG_LEVEL": "debug",
     "CACHE_STORE": "array",
     "SESSION_DRIVER": "array",
     "QUEUE_CONNECTION": "sync",
     "FILESYSTEM_DISK": "local",
-    "APP_MAINTENANCE_DRIVER": "file"
+    "APP_MAINTENANCE_DRIVER": "file",
+    "VIEW_COMPILED_PATH": "/tmp/views",
+    "APP_CONFIG_CACHE": "/tmp/config.php",
+    "APP_ROUTES_CACHE": "/tmp/routes.php"
   }
 }
