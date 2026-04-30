@@ -30,11 +30,11 @@
       "dest": "/public/img/$1"
     },
     {
-      "src": "/blog/(.*\\.(jpg|jpeg|png|gif|webp|svg|ico|css|js))",
-      "dest": "/public/blog/$1"
+      "src": "/blog-img/(.*)",
+      "dest": "/public/blog-img/$1"
     },
     {
-      "src": "/product/(.*\\.(jpg|jpeg|png|gif|webp|svg|ico|css|js))",
+      "src": "/product/(.*\\.(jpg|jpeg|png|gif|webp|svg|ico))",
       "dest": "/public/product/$1"
     },
     {
