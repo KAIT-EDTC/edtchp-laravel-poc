@@ -12,6 +12,16 @@
   ],
   "routes": [
     {
+      "src": "/build/assets/(.*\\.css)",
+      "headers": { "Content-Type": "text/css; charset=utf-8" },
+      "dest": "/public/build/assets/$1"
+    },
+    {
+      "src": "/build/assets/(.*\\.js)",
+      "headers": { "Content-Type": "application/javascript; charset=utf-8" },
+      "dest": "/public/build/assets/$1"
+    },
+    {
       "src": "/build/(.*)",
       "dest": "/public/build/$1"
     },
