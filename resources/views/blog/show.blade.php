@@ -9,7 +9,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ url()->current() }}">
     @if ($article['thumbnail'])
-        <meta property="og:image" content="{{ asset('blog/' . $article['thumbnail']) }}">
+        <meta property="og:image" content="{{ asset('blog-img/' . $article['thumbnail']) }}">
     @endif
     <meta property="og:site_name" content="神奈川工科大学EDTC">
     <meta property="og:locale" content="ja_JP">
@@ -18,7 +18,7 @@
     <meta name="twitter:title" content="{{ $article['title'] }} | 神奈川工科大学EDTC">
     <meta name="twitter:description" content="{{ $article['caption'] ?? '' }}">
     @if ($article['thumbnail'])
-        <meta name="twitter:image" content="{{ asset('blog/' . $article['thumbnail']) }}">
+        <meta name="twitter:image" content="{{ asset('blog-img/' . $article['thumbnail']) }}">
     @endif
 @endsection
 
@@ -40,7 +40,7 @@
         </header>
 
         @if ($article['thumbnail'])
-            <img src="{{ asset('blog/' . $article['thumbnail']) }}" alt="{{ $article['title'] }}" class="w-full rounded-lg mb-8 aspect-video object-cover">
+            <img src="{{ asset('blog-img/' . $article['thumbnail']) }}" alt="{{ $article['title'] }}" class="w-full rounded-lg mb-8 aspect-video object-cover">
         @endif
 
         <div class="prose prose-gray max-w-none">

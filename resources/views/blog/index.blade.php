@@ -41,7 +41,7 @@
                 <a href="{{ route('blog.show', $article['slug']) }}" class="block group">
                     <x-card variant="hoverable">
                         @if ($article['thumbnail'])
-                            <img src="{{ asset('blog/' . $article['thumbnail']) }}" alt="{{ $article['title'] }}" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="{{ asset('blog-img/' . $article['thumbnail']) }}" alt="{{ $article['title'] }}" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300">
                         @endif
                         <div class="p-4">
                             <x-text variant="caption-xs" tag="time">{{ $article['date'] }}</x-text>
