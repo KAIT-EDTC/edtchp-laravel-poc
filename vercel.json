@@ -46,9 +46,6 @@
     "SESSION_DRIVER": "array",
     "QUEUE_CONNECTION": "sync",
     "FILESYSTEM_DISK": "local",
-    "APP_MAINTENANCE_DRIVER": "file",
-    "VIEW_COMPILED_PATH": "/tmp/views",
-    "APP_CONFIG_CACHE": "/tmp/config.php",
-    "APP_ROUTES_CACHE": "/tmp/routes.php"
+    "APP_MAINTENANCE_DRIVER": "file"
   }
 }

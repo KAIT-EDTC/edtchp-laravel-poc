@@ -26,8 +26,7 @@
     22 => 'Illuminate\\View\\ViewServiceProvider',
     23 => 'Laravel\\Tinker\\TinkerServiceProvider',
     24 => 'Carbon\\Laravel\\ServiceProvider',
-    25 => 'Termwind\\Laravel\\TermwindServiceProvider',
-    26 => 'App\\Providers\\AppServiceProvider',
+    25 => 'App\\Providers\\AppServiceProvider',
   ),
   'eager' => 
   array (
@@ -42,8 +41,7 @@
     8 => 'Illuminate\\Session\\SessionServiceProvider',
     9 => 'Illuminate\\View\\ViewServiceProvider',
     10 => 'Carbon\\Laravel\\ServiceProvider',
-    11 => 'Termwind\\Laravel\\TermwindServiceProvider',
-    12 => 'App\\Providers\\AppServiceProvider',
+    11 => 'App\\Providers\\AppServiceProvider',
   ),
   'deferred' => 
   array (
