@@ -1,5 +1,9 @@
 <?php
 
+// Diagnostic: verify PHP is working on Vercel
+phpinfo();
+exit;
+
 /**
  * Vercel serverless entry point for Laravel.
  * Routes all requests through the Laravel application.
