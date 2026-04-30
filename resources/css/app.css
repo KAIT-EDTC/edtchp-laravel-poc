@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+    --font-sans: "Noto Sans JP", sans-serif;
+    --color-main: #0a8cd8;
+    --color-bg: #e6e6e6;
+    --color-bg-alt: #F8F7F3;
+    --color-item: #F8F7F3;
+    --color-breadcrumbs-hover: #cfcecb;
+}
+
+/* Focus visibility (accessibility) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--color-main);
+    outline-offset: 2px;
+}
+
+/* Fade-in animation */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@utility anim-fadein {
+    animation: fade-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Slider JS-driven classes */
+.slide1 { transform: translateX(0); }
+.slide2 { transform: translateX(-33.33%); }
+.slide3 { transform: translateX(-66.66%); }
+
+/* Hamburger menu checkbox hack */
+#gnav-input:checked ~ #gnav-close {
+    display: block;
+    opacity: 0.5;
+}
+#gnav-input:checked ~ #gnav-content {
+    transform: translateX(0%);
+    box-shadow: 6px 0 25px rgba(0, 0, 0, 0.15);
+}
