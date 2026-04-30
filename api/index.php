@@ -33,7 +33,23 @@ try {
 
     use Illuminate\Http\Request;
 
-    $app->handleRequest(Request::capture());
+    // Diagnostic: test if Laravel can return a response
+    $kernel = $app->make(\Illuminate\Contracts\Http\Kernel::class);
+    $request = Request::capture();
+    $response = $kernel->handle($request);
+    
+    if (empty($response->getContent())) {
+        header('Content-Type: application/json');
+        echo json_encode([
+            'debug' => 'Empty response',
+            'status' => $response->getStatusCode(),
+            'headers' => $response->headers->all(),
+        ]);
+        exit;
+    }
+    
+    $response->send();
+    $kernel->terminate($request, $response);
 } catch (\Throwable $e) {
     http_response_code(500);
     header('Content-Type: application/json');
