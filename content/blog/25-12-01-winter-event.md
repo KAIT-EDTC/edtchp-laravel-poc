@@ -13,7 +13,7 @@ tags:
 
 冬休みに小中学生向けプログラミング教室を開催します！
 
-![冬イベントイメージ](/storage/blog/25-12-07-sciencewinter-01.webp)
+![冬イベントイメージ](/blog/25-12-07-sciencewinter-01.webp)
 
 ## 開催概要
 
@@ -29,6 +29,6 @@ tags:
 
 Scratchを使って、クリスマスをテーマにしたオリジナルゲームを制作します。完成した作品はご家庭のPCやタブレットでも遊べます。
 
-![Scratchゲーム例](/storage/blog/25-12-07-sciencewinter-02.webp)
+![Scratchゲーム例](/blog/25-12-07-sciencewinter-02.webp)
 
 お申し込みはお問い合わせフォームからどうぞ。先着順です！

@@ -12,7 +12,7 @@
     <meta property="og:description" content="@yield('description', '神奈川工科大学EDTCの公式サイト。工学教育を通じて子どもたちにモノづくりの楽しさを届ける学生団体です。')">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ asset('storage/img/EDTC-icon.webp') }}">
+    <meta property="og:image" content="{{ asset('img/EDTC-icon.webp') }}">
     <meta property="og:site_name" content="神奈川工科大学EDTC">
     <meta property="og:locale" content="ja_JP">
     {{-- Twitter Card --}}
@@ -20,7 +20,7 @@
     <meta name="twitter:site" content="@kait_edtc">
     <meta name="twitter:title" content="@yield('title', 'ホーム') | 神奈川工科大学EDTC">
     <meta name="twitter:description" content="@yield('description', '神奈川工科大学EDTCの公式サイト。工学教育を通じて子どもたちにモノづくりの楽しさを届ける学生団体です。')">
-    <meta name="twitter:image" content="{{ asset('storage/img/EDTC-icon.webp') }}">
+    <meta name="twitter:image" content="{{ asset('img/EDTC-icon.webp') }}">
     @show
 
     @vite(['resources/css/app.css'])
@@ -28,7 +28,7 @@
 
 <body class="mt-[70px] font-sans leading-normal">
     <header class="fixed top-0 w-full bg-white px-[4%] py-1.5 flex items-center z-30">
-        <a href="{{ route('home') }}"><img src="{{ asset('storage/img/EDTC-icon.webp') }}" alt="EDTC" class="block h-[60px] w-auto"></a>
+        <a href="{{ route('home') }}"><img src="{{ asset('img/EDTC-icon.webp') }}" alt="EDTC" class="block h-[60px] w-auto"></a>
         <a href="{{ route('home') }}" class="text-2xl font-bold p-0">EDTC</a>
 
         {{-- モバイルナビ --}}
@@ -87,7 +87,7 @@
             </nav>
             <hr class="border-gray-600 mb-6">
             <div class="flex items-center justify-center gap-3 mb-4">
-                <img src="{{ asset('storage/img/EDTC-icon.webp') }}" alt="EDTCロゴ" class="h-[50px] w-auto align-text-bottom">
+                <img src="{{ asset('img/EDTC-icon.webp') }}" alt="EDTCロゴ" class="h-[50px] w-auto align-text-bottom">
                 <span class="text-5xl font-bold">EDTC</span>
             </div>
             <p class="text-sm text-gray-300 mb-1">学校法人 幾徳学園　神奈川工科大学<br>mail: kait.edtc@gmail.com</p>

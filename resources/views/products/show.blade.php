@@ -9,7 +9,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ url()->current() }}">
     @if ($product['thumbnail'])
-        <meta property="og:image" content="{{ asset('storage/product/' . $product['thumbnail']) }}">
+        <meta property="og:image" content="{{ asset('product/' . $product['thumbnail']) }}">
     @endif
     <meta property="og:site_name" content="神奈川工科大学EDTC">
     <meta property="og:locale" content="ja_JP">
@@ -18,7 +18,7 @@
     <meta name="twitter:title" content="{{ $product['title'] }} | 神奈川工科大学EDTC">
     <meta name="twitter:description" content="{{ $product['headline'] ?? '' }}">
     @if ($product['thumbnail'])
-        <meta name="twitter:image" content="{{ asset('storage/product/' . $product['thumbnail']) }}">
+        <meta name="twitter:image" content="{{ asset('product/' . $product['thumbnail']) }}">
     @endif
 @endsection
 
@@ -32,7 +32,7 @@
         </header>
 
         @if ($product['thumbnail'])
-            <img src="{{ asset('storage/product/' . $product['thumbnail']) }}" alt="{{ $product['title'] }}" class="w-full rounded-lg mb-8 aspect-video object-cover">
+            <img src="{{ asset('product/' . $product['thumbnail']) }}" alt="{{ $product['title'] }}" class="w-full rounded-lg mb-8 aspect-video object-cover">
         @endif
 
         <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 mb-8 text-sm">

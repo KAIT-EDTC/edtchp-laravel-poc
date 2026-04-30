@@ -13,7 +13,7 @@ tags:
 
 今年もKAIT学園祭にEDTCが出展します！
 
-![昨年の学祭ブース](/storage/blog/25-08-03-JCIshugo.webp)
+![昨年の学祭ブース](/blog/25-08-03-JCIshugo.webp)
 
 ## 出展内容
 
@@ -31,4 +31,4 @@ tags:
 
 入場無料・予約不要です。ぜひお越しください！
 
-![準備の様子](/storage/blog/25-08-03-balloonart.webp)
+![準備の様子](/blog/25-08-03-balloonart.webp)

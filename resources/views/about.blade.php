@@ -14,7 +14,7 @@
 
         <div class="grid gap-8 md:grid-cols-2">
             <x-card variant="hoverable">
-                <img src="{{ asset('storage/img/EDTC-teaching-machine.webp') }}" alt="Engineering - 工学教育の様子" class="w-full aspect-video object-cover" width="640" height="360">
+                <img src="{{ asset('img/EDTC-teaching-machine.webp') }}" alt="Engineering - 工学教育の様子" class="w-full aspect-video object-cover" width="640" height="360">
                 <div class="p-6">
                     <div class="text-5xl font-bold text-[crimson]">E</div>
                     <x-text variant="section-title" class="mt-1">ngineering</x-text>
@@ -30,7 +30,7 @@
             </x-card>
 
             <x-card variant="hoverable">
-                <img src="{{ asset('storage/img/EDTC-yugyou-huukei.webp') }}" alt="Dispatch - 出張授業の様子" class="w-full aspect-video object-cover" width="640" height="360">
+                <img src="{{ asset('img/EDTC-yugyou-huukei.webp') }}" alt="Dispatch - 出張授業の様子" class="w-full aspect-video object-cover" width="640" height="360">
                 <div class="p-6">
                     <div class="text-5xl font-bold text-[dodgerblue]">D</div>
                     <x-text variant="section-title" class="mt-1">ispatch</x-text>
@@ -46,7 +46,7 @@
             </x-card>
 
             <x-card variant="hoverable">
-                <img src="{{ asset('storage/img/EDTC-teaching-sasaki.webp') }}" alt="Teacher - 教える活動の様子" class="w-full aspect-video object-cover" width="640" height="360">
+                <img src="{{ asset('img/EDTC-teaching-sasaki.webp') }}" alt="Teacher - 教える活動の様子" class="w-full aspect-video object-cover" width="640" height="360">
                 <div class="p-6">
                     <div class="text-5xl font-bold text-[limegreen]">T</div>
                     <x-text variant="section-title" class="mt-1">eacher</x-text>
@@ -62,7 +62,7 @@
             </x-card>
 
             <x-card variant="hoverable">
-                <img src="{{ asset('storage/img/EDTC-GroupPhoto.webp') }}" alt="Company - チーム体制" class="w-full aspect-video object-cover" width="640" height="360">
+                <img src="{{ asset('img/EDTC-GroupPhoto.webp') }}" alt="Company - チーム体制" class="w-full aspect-video object-cover" width="640" height="360">
                 <div class="p-6">
                     <div class="text-5xl font-bold text-[orange]">C</div>
                     <x-text variant="section-title" class="mt-1">ompany</x-text>

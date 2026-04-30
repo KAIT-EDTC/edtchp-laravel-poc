@@ -9,9 +9,9 @@
             学ぶ側、<span class="whitespace-nowrap">教える側、</span><span class="whitespace-nowrap">どちらも学べる</span><br><span class="whitespace-nowrap">環境作りを</span>
         </p>
         <div id="slide" class="w-[300%] h-full flex transition-all duration-300">
-            <div class="w-1/3 h-full flex items-center justify-center bg-[#E1F3FC] z-[1]"><img src="{{ asset('storage/img/EDTC-smile-sasaki.webp') }}" alt="EDTC佐々木の笑顔" class="w-full h-full object-cover aspect-video" width="640" height="360"></div>
-            <div class="w-1/3 h-full flex items-center justify-center bg-[#FCE8F0] z-[1]"><img src="{{ asset('storage/img/EDTC-nemote-teach.webp') }}" alt="EDTC根本の指導の様子" class="w-full h-full object-cover aspect-video" width="640" height="360"></div>
-            <div class="w-1/3 h-full flex items-center justify-center bg-[#E3F1E4] z-[1]"><img src="{{ asset('storage/img/sakura-fix.webp') }}" alt="メンバーが生徒に教えている画像" class="w-full h-full object-cover aspect-video" width="640" height="360"></div>
+            <div class="w-1/3 h-full flex items-center justify-center bg-[#E1F3FC] z-[1]"><img src="{{ asset('img/EDTC-smile-sasaki.webp') }}" alt="EDTC佐々木の笑顔" class="w-full h-full object-cover aspect-video" width="640" height="360"></div>
+            <div class="w-1/3 h-full flex items-center justify-center bg-[#FCE8F0] z-[1]"><img src="{{ asset('img/EDTC-nemote-teach.webp') }}" alt="EDTC根本の指導の様子" class="w-full h-full object-cover aspect-video" width="640" height="360"></div>
+            <div class="w-1/3 h-full flex items-center justify-center bg-[#E3F1E4] z-[1]"><img src="{{ asset('img/sakura-fix.webp') }}" alt="メンバーが生徒に教えている画像" class="w-full h-full object-cover aspect-video" width="640" height="360"></div>
         </div>
         <span id="prev" class="absolute w-[15px] h-[15px] left-[25px] bottom-1/2 z-[1] cursor-pointer border-t-[3px] border-r-[3px] border-black -rotate-[135deg] translate-y-1/2"></span>
         <span id="next" class="absolute w-[15px] h-[15px] right-[10px] bottom-1/2 z-[1] cursor-pointer border-t-[3px] border-r-[3px] border-black rotate-45 -translate-y-1/2"></span>
@@ -36,7 +36,7 @@
     </section>
 
     {{-- PV動画 --}}
-    <video class="w-full max-w-5xl mx-auto block aspect-video" loop autoplay muted playsinline src="{{ asset('storage/img/EDTC_PV.mp4') }}" controls width="1280" height="720"></video>
+    <video class="w-full max-w-5xl mx-auto block aspect-video" loop autoplay muted playsinline src="{{ asset('img/EDTC_PV.mp4') }}" controls width="1280" height="720"></video>
 
     {{-- NEWS --}}
     <section class="max-w-3xl mx-auto px-4 py-12">

@@ -13,7 +13,7 @@ tags:
 
 学園祭に向けて、ゲーム開発エンジン「Unity」の勉強会を始めました。
 
-![Unity画面](/storage/blog/25-08-08-sciencesummer-01.webp)
+![Unity画面](/blog/25-08-08-sciencesummer-01.webp)
 
 ## 勉強会の進め方
 

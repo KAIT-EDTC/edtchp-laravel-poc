@@ -5,7 +5,7 @@
 @section('content')
     {{-- ヒーロー --}}
     <section class="relative h-[300px] md:h-[400px] overflow-hidden">
-        <img src="{{ asset('storage/img/EDTC-GroupPhoto.webp') }}" alt="" class="absolute inset-0 w-full h-full object-cover" width="1280" height="720" fetchpriority="high">
+        <img src="{{ asset('img/EDTC-GroupPhoto.webp') }}" alt="" class="absolute inset-0 w-full h-full object-cover" width="1280" height="720" fetchpriority="high">
         <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white">
             <h1 class="text-4xl md:text-5xl font-bold">Blog</h1>
             <p class="mt-3 text-sm md:text-base">EDTCの活動や日々の取り組みをお届けします。</p>
@@ -41,7 +41,7 @@
                 <a href="{{ route('blog.show', $article['slug']) }}" class="block group">
                     <x-card variant="hoverable">
                         @if ($article['thumbnail'])
-                            <img src="{{ asset('storage/blog/' . $article['thumbnail']) }}" alt="{{ $article['title'] }}" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="{{ asset('blog/' . $article['thumbnail']) }}" alt="{{ $article['title'] }}" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300">
                         @endif
                         <div class="p-4">
                             <x-text variant="caption-xs" tag="time">{{ $article['date'] }}</x-text>

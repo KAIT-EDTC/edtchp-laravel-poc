@@ -23,7 +23,7 @@
                 <a href="{{ route('products.show', $product['slug']) }}" class="block group">
                     <x-card variant="hoverable">
                         @if ($product['thumbnail'])
-                            <img src="{{ asset('storage/product/' . $product['thumbnail']) }}" alt="{{ $product['title'] }}" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="{{ asset('product/' . $product['thumbnail']) }}" alt="{{ $product['title'] }}" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300">
                         @endif
                         <div class="p-4">
                             <x-text variant="card-title" class="line-clamp-2">{{ $product['title'] }}</x-text>
