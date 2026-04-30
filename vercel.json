@@ -39,7 +39,6 @@
   "env": {
     "APP_ENV": "production",
     "APP_DEBUG": "true",
-    "APP_KEY": "",
     "LOG_CHANNEL": "stderr",
     "LOG_LEVEL": "debug",
     "CACHE_STORE": "array",
