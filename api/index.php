@@ -5,6 +5,8 @@
  * Routes all requests through the Laravel application.
  */
 
+// Vercel環境用に、パスの解決をLaravel本体（ルート）に向ける
+require __DIR__ . '/../public/index.php';
 // Change working directory to the project root
 chdir(dirname(__DIR__));
 
