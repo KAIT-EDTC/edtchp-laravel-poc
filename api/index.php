@@ -5,36 +5,31 @@
  * Routes all requests through the Laravel application.
  */
 
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 // Change working directory to the project root
 chdir(dirname(__DIR__));
 
 define('LARAVEL_START', microtime(true));
 
+// Ensure /tmp directories exist for Vercel's read-only filesystem
+$dirs = ['/tmp/storage/views', '/tmp/storage/cache', '/tmp/storage/sessions', '/tmp/storage/logs', '/tmp/storage/framework/cache', '/tmp/storage/framework/views', '/tmp/storage/framework/sessions'];
+foreach ($dirs as $dir) {
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
+}
+
 try {
-    // Ensure /tmp directories exist for Vercel's read-only filesystem
-    if (!is_dir('/tmp/views')) {
-        mkdir('/tmp/views', 0755, true);
-    }
-    if (!is_dir('/tmp/cache')) {
-        mkdir('/tmp/cache', 0755, true);
-    }
-    if (!is_dir('/tmp/sessions')) {
-        mkdir('/tmp/sessions', 0755, true);
-    }
-    if (!is_dir('/tmp/logs')) {
-        mkdir('/tmp/logs', 0755, true);
-    }
-
-    // Determine if the application is in maintenance mode
-    if (file_exists($maintenance = __DIR__ . '/../storage/framework/maintenance.php')) {
-        require $maintenance;
-    }
-
     // Register the Composer autoloader
     require __DIR__ . '/../vendor/autoload.php';
 
     // Bootstrap Laravel and handle the request
     $app = require_once __DIR__ . '/../bootstrap/app.php';
+
+    // Override storage path to writable /tmp
+    $app->useStoragePath('/tmp/storage');
 
     use Illuminate\Http\Request;
 
@@ -46,7 +41,7 @@ try {
         'error' => $e->getMessage(),
         'file' => $e->getFile(),
         'line' => $e->getLine(),
-        'trace' => array_slice(explode("\n", $e->getTraceAsString()), 0, 15),
+        'trace' => array_slice(explode("\n", $e->getTraceAsString()), 0, 20),
     ]);
     exit(1);
 }
