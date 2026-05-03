@@ -4,22 +4,12 @@
 @section('description', $article['caption'] ?? '')
 
 @section('ogp')
-    <meta property="og:title" content="{{ $article['title'] }} | 神奈川工科大学EDTC">
-    <meta property="og:description" content="{{ $article['caption'] ?? '' }}">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="{{ url()->current() }}">
-    @if ($article['thumbnail'])
-        <meta property="og:image" content="{{ asset('blog-img/' . $article['thumbnail']) }}">
-    @endif
-    <meta property="og:site_name" content="神奈川工科大学EDTC">
-    <meta property="og:locale" content="ja_JP">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@kait_edtc">
-    <meta name="twitter:title" content="{{ $article['title'] }} | 神奈川工科大学EDTC">
-    <meta name="twitter:description" content="{{ $article['caption'] ?? '' }}">
-    @if ($article['thumbnail'])
-        <meta name="twitter:image" content="{{ asset('blog-img/' . $article['thumbnail']) }}">
-    @endif
+    <x-content.meta-tags
+        :title="$article['title']"
+        :description="$article['caption'] ?? ''"
+        :image="$article['thumbnail'] ? asset('blog-img/' . $article['thumbnail']) : null"
+        type="article"
+    />
 @endsection
 
 @section('content')
