@@ -3,7 +3,7 @@
     <a href="{{ route('home') }}" class="text-2xl font-bold p-0">EDTC</a>
 
     {{-- モバイルナビ --}}
-    <nav class="hidden max-[767px]:block ml-auto">
+    <nav class="ml-auto md:hidden">
         <div class="relative mt-3">
             <input id="sp-menu-toggle" type="checkbox" class="peer sr-only" aria-label="メニュー切り替え">
             <label for="sp-menu-toggle" class="relative inline-block w-[30px] h-[22px] align-middle cursor-pointer">
@@ -30,7 +30,7 @@
     </nav>
 
     {{-- PCナビ --}}
-    <nav class="hidden min-[768px]:block ml-auto">
+    <nav class="hidden ml-auto md:block">
         <ul class="list-none flex items-center">
             <li class="mx-3"><a href="{{ route('home') }}" class="text-xs hover:text-main"><span class="text-[17px] font-bold">Home</span><br>ホーム</a></li>
             <li class="mx-3"><a href="{{ route('blog.index') }}" class="text-xs hover:text-main"><span class="text-[17px] font-bold">Blog</span><br>ブログ</a></li>
