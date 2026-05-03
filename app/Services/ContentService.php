@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Cache;
 use League\CommonMark\MarkdownConverter;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
@@ -11,7 +12,21 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 class ContentService
 {
+    private const CACHE_TTL_SECONDS = 600;
+
     private MarkdownConverter $markdown;
+
+    /** @var array<string, array<int, array>> */
+    private array $requestAllItems = [];
+
+    /** @var array<string, array<int, array>> */
+    private array $requestListItems = [];
+
+    /** @var array<string, array<string, mixed>|null> */
+    private array $requestFindItems = [];
+
+    /** @var array<string, string> */
+    private array $requestTypeVersions = [];
 
     public function __construct()
     {
@@ -38,31 +53,31 @@ class ContentService
      */
     public function list(string $type, ?string $year = null, ?string $tag = null): array
     {
-        $dir = base_path("content/{$type}");
-        if (! is_dir($dir)) {
-            return [];
+        $requestKey = implode(':', [$type, $year ?? '_', $tag ?? '_']);
+        if (array_key_exists($requestKey, $this->requestListItems)) {
+            return $this->requestListItems[$requestKey];
         }
 
-        $items = [];
-        foreach (glob("{$dir}/*.md") as $file) {
-            $parsed = $this->parseFile($file, $type);
-            if ($parsed === null) {
-                continue;
-            }
+        $version = $this->getTypeVersion($type);
+        $cacheKey = implode(':', ['content', 'list', $type, $version, $year ?? '_', $tag ?? '_']);
 
-            if ($year && ! str_starts_with($parsed['date'] ?? '', $year)) {
-                continue;
-            }
+        $items = Cache::remember($cacheKey, self::CACHE_TTL_SECONDS, function () use ($type, $year, $tag): array {
+            $allItems = $this->getAllItems($type);
 
-            if ($tag && ! in_array($tag, $parsed['tags'] ?? [], true)) {
-                continue;
-            }
+            return array_values(array_filter($allItems, function (array $item) use ($year, $tag): bool {
+                if ($year && ! str_starts_with((string) ($item['date'] ?? ''), $year)) {
+                    return false;
+                }
 
-            $items[] = $parsed;
-        }
+                if ($tag && ! in_array($tag, $item['tags'] ?? [], true)) {
+                    return false;
+                }
 
-        // 日付降順ソート
-        usort($items, fn ($a, $b) => ($b['date'] ?? '') <=> ($a['date'] ?? ''));
+                return true;
+            }));
+        });
+
+        $this->requestListItems[$requestKey] = $items;
 
         return $items;
     }
@@ -72,21 +87,35 @@ class ContentService
      */
     public function find(string $type, string $slug): ?array
     {
+        $requestKey = "{$type}:{$slug}";
+        if (array_key_exists($requestKey, $this->requestFindItems)) {
+            return $this->requestFindItems[$requestKey];
+        }
+
         $file = base_path("content/{$type}/{$slug}.md");
         if (! file_exists($file)) {
             return null;
         }
 
-        $parsed = $this->parseFile($file, $type);
-        if ($parsed === null) {
-            return null;
-        }
+        $modifiedAt = (string) (filemtime($file) ?: 0);
+        $cacheKey = implode(':', ['content', 'find', $type, $slug, $modifiedAt]);
 
-        // 本文をHTMLに変換
-        $parsed['html'] = $this->markdown->convert($parsed['body'])->getContent();
-        unset($parsed['body']);
+        $item = Cache::remember($cacheKey, self::CACHE_TTL_SECONDS, function () use ($file, $type): ?array {
+            $parsed = $this->parseFile($file, $type);
+            if ($parsed === null) {
+                return null;
+            }
 
-        return $parsed;
+            // 本文をHTMLに変換
+            $parsed['html'] = $this->markdown->convert($parsed['body'])->getContent();
+            unset($parsed['body']);
+
+            return $parsed;
+        });
+
+        $this->requestFindItems[$requestKey] = $item;
+
+        return $item;
     }
 
     /**
@@ -94,14 +123,19 @@ class ContentService
      */
     public function tags(string $type): array
     {
-        $tags = [];
-        foreach ($this->list($type) as $item) {
-            foreach ($item['tags'] ?? [] as $tag) {
-                $tags[$tag] = true;
-            }
-        }
+        $version = $this->getTypeVersion($type);
+        $cacheKey = implode(':', ['content', 'tags', $type, $version]);
 
-        return array_keys($tags);
+        return Cache::remember($cacheKey, self::CACHE_TTL_SECONDS, function () use ($type): array {
+            $tags = [];
+            foreach ($this->getAllItems($type) as $item) {
+                foreach ($item['tags'] ?? [] as $tag) {
+                    $tags[(string) $tag] = true;
+                }
+            }
+
+            return array_keys($tags);
+        });
     }
 
     /**
@@ -109,17 +143,84 @@ class ContentService
      */
     public function years(string $type): array
     {
-        $years = [];
-        foreach ($this->list($type) as $item) {
-            $date = $item['date'] ?? '';
-            if (strlen($date) >= 4) {
-                $years[substr($date, 0, 4)] = true;
+        $version = $this->getTypeVersion($type);
+        $cacheKey = implode(':', ['content', 'years', $type, $version]);
+
+        return Cache::remember($cacheKey, self::CACHE_TTL_SECONDS, function () use ($type): array {
+            $years = [];
+            foreach ($this->getAllItems($type) as $item) {
+                $date = (string) ($item['date'] ?? '');
+                if (strlen($date) >= 4) {
+                    $years[substr($date, 0, 4)] = true;
+                }
             }
+
+            krsort($years);
+
+            return array_keys($years);
+        });
+    }
+
+    /**
+     * @return array<int, array>
+     */
+    private function getAllItems(string $type): array
+    {
+        if (array_key_exists($type, $this->requestAllItems)) {
+            return $this->requestAllItems[$type];
         }
 
-        krsort($years);
+        $version = $this->getTypeVersion($type);
+        $cacheKey = implode(':', ['content', 'all', $type, $version]);
 
-        return array_keys($years);
+        $items = Cache::remember($cacheKey, self::CACHE_TTL_SECONDS, function () use ($type): array {
+            $dir = base_path("content/{$type}");
+            if (! is_dir($dir)) {
+                return [];
+            }
+
+            $items = [];
+            foreach (glob("{$dir}/*.md") ?: [] as $file) {
+                $parsed = $this->parseFile($file, $type);
+                if ($parsed !== null) {
+                    $items[] = $parsed;
+                }
+            }
+
+            // 日付降順ソート
+            usort($items, fn (array $a, array $b): int => ((string) ($b['date'] ?? '')) <=> ((string) ($a['date'] ?? '')));
+
+            return $items;
+        });
+
+        $this->requestAllItems[$type] = $items;
+
+        return $items;
+    }
+
+    private function getTypeVersion(string $type): string
+    {
+        if (array_key_exists($type, $this->requestTypeVersions)) {
+            return $this->requestTypeVersions[$type];
+        }
+
+        $dir = base_path("content/{$type}");
+        if (! is_dir($dir)) {
+            $this->requestTypeVersions[$type] = 'missing';
+
+            return 'missing';
+        }
+
+        $files = glob("{$dir}/*.md") ?: [];
+        $latestModified = (int) (filemtime($dir) ?: 0);
+        foreach ($files as $file) {
+            $latestModified = max($latestModified, (int) (filemtime($file) ?: 0));
+        }
+
+        $version = implode('-', [count($files), $latestModified]);
+        $this->requestTypeVersions[$type] = $version;
+
+        return $version;
     }
 
     /**
@@ -134,6 +235,13 @@ class ContentService
 
         $document = YamlFrontMatter::parse($content);
         $matter = $document->matter();
+        $tags = $matter['tags'] ?? [];
+        if (is_string($tags) && $tags !== '') {
+            $tags = [$tags];
+        }
+        if (! is_array($tags)) {
+            $tags = [];
+        }
 
         $slug = pathinfo($file, PATHINFO_FILENAME);
 
@@ -144,7 +252,7 @@ class ContentService
             'thumbnail' => $matter['thumbnail'] ?? null,
             'caption' => $matter['caption'] ?? null,
             'author' => $matter['author'] ?? null,
-            'tags' => $matter['tags'] ?? [],
+            'tags' => array_values($tags),
             // Product固有フィールド
             'headline' => $matter['headline'] ?? null,
             'maker' => $matter['maker'] ?? null,

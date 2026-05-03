@@ -3,29 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Services\ContentService;
+use App\Support\PaginatesArray;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    use PaginatesArray;
+
     public function __construct(
         private ContentService $content,
     ) {}
 
     public function index(Request $request)
     {
-        $tag = $request->query('tag');
+        $tag = $request->query('tag') ?: null;
         $page = (int) $request->query('page', 1);
         $perPage = 12;
 
         $products = $this->content->list('products', null, $tag);
         $tags = $this->content->tags('products');
+        $pagination = $this->paginateArray($products, $page, $perPage);
 
-        $total = count($products);
-        $lastPage = max(1, (int) ceil($total / $perPage));
-        $page = max(1, min($page, $lastPage));
-        $items = array_slice($products, ($page - 1) * $perPage, $perPage);
-
-        return view('products.index', compact('items', 'tags', 'tag', 'page', 'lastPage'));
+        return view('products.index', [
+            'items' => $pagination['items'],
+            'page' => $pagination['page'],
+            'lastPage' => $pagination['lastPage'],
+            'tags' => $tags,
+            'tag' => $tag,
+        ]);
     }
 
     public function show(string $slug)
