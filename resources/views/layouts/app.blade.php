@@ -23,7 +23,7 @@
     <meta name="twitter:image" content="{{ asset('img/EDTC-icon.webp') }}">
     @show
 
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="mt-[70px] font-sans leading-normal">
@@ -35,7 +35,6 @@
 
     <x-layout.footer />
 
-    @vite(['resources/js/app.js'])
     @stack('scripts')
 </body>
 

@@ -35,13 +35,3 @@ select:focus-visible,
 .slide1 { transform: translateX(0); }
 .slide2 { transform: translateX(-33.33%); }
 .slide3 { transform: translateX(-66.66%); }
-
-/* Hamburger menu checkbox hack */
-#gnav-input:checked ~ #gnav-close {
-    display: block;
-    opacity: 0.5;
-}
-#gnav-input:checked ~ #gnav-content {
-    transform: translateX(0%);
-    box-shadow: 6px 0 25px rgba(0, 0, 0, 0.15);
-}

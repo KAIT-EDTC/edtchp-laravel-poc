@@ -3,26 +3,34 @@
     <a href="{{ route('home') }}" class="text-2xl font-bold p-0">EDTC</a>
 
     {{-- モバイルナビ --}}
-    <nav class="md:hidden ml-auto">
+    <nav class="hidden max-[767px]:block ml-auto">
         <div class="relative mt-3">
-            <input id="gnav-input" type="checkbox" class="hidden" aria-label="メニュー切り替え">
-            <label id="gnav-open" for="gnav-input" class="inline-block w-[30px] h-[22px] align-middle cursor-pointer relative">
-                <span class="absolute h-[3px] w-[25px] rounded bg-gray-600 top-0 before:content-[''] before:absolute before:h-[3px] before:w-[25px] before:rounded before:bg-gray-600 before:-bottom-2 after:content-[''] after:absolute after:h-[3px] after:w-[25px] after:rounded after:bg-gray-600 after:-bottom-4"></span>
+            <input id="sp-menu-toggle" type="checkbox" class="peer sr-only" aria-label="メニュー切り替え">
+            <label for="sp-menu-toggle" class="relative inline-block w-[30px] h-[22px] align-middle cursor-pointer">
+                <span class="absolute top-0 block h-[3px] w-[25px] rounded bg-gray-600 before:content-[''] before:absolute before:top-2 before:block before:h-[3px] before:w-[25px] before:rounded before:bg-gray-600 after:content-[''] after:absolute after:top-4 after:block after:h-[3px] after:w-[25px] after:rounded after:bg-gray-600"></span>
             </label>
-            <label id="gnav-close" for="gnav-input" class="hidden fixed z-90 inset-0 w-full h-full bg-black opacity-0 transition-all duration-300"></label>
-            <div id="gnav-content" class="overflow-auto fixed top-0 left-0 z-[300] w-[70%] max-w-[300px] h-full bg-black/80 transition-all duration-300 -translate-x-[105%]">
+            <label for="sp-menu-toggle" class="fixed inset-0 z-[90] hidden bg-black/50 transition-all duration-300 peer-checked:block"></label>
+            <div class="fixed top-0 left-0 z-[300] w-[70%] max-w-[300px] h-full overflow-auto bg-black/80 transition-all duration-300 -translate-x-[105%] peer-checked:translate-x-0 peer-checked:shadow-[6px_0_25px_rgba(0,0,0,0.15)]">
                 <ul class="flex flex-col items-center pt-12 uppercase">
-                    <li class="my-2.5 pb-5"><a href="{{ route('home') }}" class="text-white text-xs block w-[200px] text-center first-line:text-base first-line:font-bold hover:text-blue-300">Home<br>ホーム</a></li>
-                    <li class="my-2.5 pb-5"><a href="{{ route('blog.index') }}" class="text-white text-xs block w-[200px] text-center first-line:text-base first-line:font-bold hover:text-blue-300">Blog<br>ブログ</a></li>
-                    <li class="my-2.5 pb-5"><a href="{{ route('products.index') }}" class="text-white text-xs block w-[200px] text-center first-line:text-base first-line:font-bold hover:text-blue-300">Product<br>プロダクト</a></li>
-                    <li class="my-2.5 pb-5"><a href="{{ route('contact') }}" class="text-white text-xs block w-[200px] text-center first-line:text-base first-line:font-bold hover:text-blue-300">Contact<br>お問い合わせ</a></li>
+                    <li class="my-2.5 pb-5">
+                        <a href="{{ route('home') }}" class="text-white text-xs block w-[200px] text-center hover:text-[#85a7cc]"><span class="text-base font-bold">Home</span><br>ホーム</a>
+                    </li>
+                    <li class="my-2.5 pb-5">
+                        <a href="{{ route('blog.index') }}" class="text-white text-xs block w-[200px] text-center hover:text-[#85a7cc]"><span class="text-base font-bold">Blog</span><br>ブログ</a>
+                    </li>
+                    <li class="my-2.5 pb-5">
+                        <a href="{{ route('products.index') }}" class="text-white text-xs block w-[200px] text-center hover:text-[#85a7cc]"><span class="text-base font-bold">Product</span><br>プロダクト</a>
+                    </li>
+                    <li class="my-2.5 pb-5">
+                        <a href="{{ route('contact') }}" class="text-white text-xs block w-[200px] text-center hover:text-[#85a7cc]"><span class="text-base font-bold">Contact</span><br>お問い合わせ</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
     {{-- PCナビ --}}
-    <nav class="hidden md:block ml-auto">
+    <nav class="hidden min-[768px]:block ml-auto">
         <ul class="list-none flex items-center">
             <li class="mx-3"><a href="{{ route('home') }}" class="text-xs hover:text-main"><span class="text-[17px] font-bold">Home</span><br>ホーム</a></li>
             <li class="mx-3"><a href="{{ route('blog.index') }}" class="text-xs hover:text-main"><span class="text-[17px] font-bold">Blog</span><br>ブログ</a></li>
