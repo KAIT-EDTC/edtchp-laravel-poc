@@ -4,11 +4,14 @@
 
 @theme {
     --font-sans: "Noto Sans JP", sans-serif;
-    --color-main: #0a8cd8;
+    --color-main: #0f6fa6;
     --color-bg: #e6e6e6;
     --color-bg-alt: #F8F7F3;
     --color-item: #F8F7F3;
     --color-breadcrumbs-hover: #cfcecb;
+    --color-text: #4b4b4b;
+    --color-text-inverse: #ffffff;
+    --color-surface-dark: #1f2937;
 }
 
 /* Focus visibility (accessibility) */
