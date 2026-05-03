@@ -5,6 +5,7 @@
 ## 1. 基本方針
 
 - Laravel 13 + Blade + Vite 構成に従う。
+- 環境差異を防ぐため、npm や PHP 系で依存インストールを伴うコマンドは原則 Docker コンテナ内で実行する。
 - 既存の責務分離を維持する。
   - ルーティング: `routes/web.php`
   - 画面制御: `app/Http/Controllers/`
