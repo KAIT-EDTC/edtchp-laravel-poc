@@ -17,8 +17,13 @@ class BasicAuthMiddleware
     {
         $user = env('POC_USER');
         $pass = env('POC_PASSWORD');
+        $environment = env('APP_ENV');
 
-        if ($request->getUser() !== $user || $request->getPassword() !== $pass) {
+        if (
+            $environment === 'production' && 
+           ($request->getUser() !== $user || $request->getPassword() !== $pass)
+        ) 
+        {
             return response('Unauthorized', 401, ['WWW-Authenticate' => 'Basic realm="PoC"']);
         }
 
