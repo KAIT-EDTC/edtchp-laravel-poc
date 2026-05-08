@@ -13,16 +13,19 @@
             <div class="fixed top-0 left-0 z-[300] w-[70%] max-w-[300px] h-full overflow-auto bg-black/80 transition-all duration-300 -translate-x-[105%] peer-checked:translate-x-0 peer-checked:shadow-[6px_0_25px_rgba(0,0,0,0.15)]">
                 <ul class="flex flex-col items-center pt-12 uppercase">
                     <li class="my-2.5 pb-5">
-                        <a href="{{ route('home') }}" class="text-white text-xs block w-[200px] text-center hover:text-[#85A7CC]"><span class="text-base font-bold">Home</span><br>ホーム</a>
+                        <a href="{{ route('home') }}" class="text-white text-xs block w-[200px] text-center hover:underline"><span class="text-base font-bold">Home</span><br>ホーム</a>
                     </li>
                     <li class="my-2.5 pb-5">
-                        <a href="{{ route('blog.index') }}" class="text-white text-xs block w-[200px] text-center hover:text-[#85A7CC]"><span class="text-base font-bold">Blog</span><br>ブログ</a>
+                        <a href="{{ route('about') }}" class="text-white text-xs block w-[200px] text-center hover:underline"><span class="text-base font-bold">About</span><br>アバウト</a>
                     </li>
                     <li class="my-2.5 pb-5">
-                        <a href="{{ route('products.index') }}" class="text-white text-xs block w-[200px] text-center hover:text-[#85A7CC]"><span class="text-base font-bold">Product</span><br>プロダクト</a>
+                        <a href="{{ route('blog.index') }}" class="text-white text-xs block w-[200px] text-center hover:underline"><span class="text-base font-bold">Blog</span><br>ブログ</a>
                     </li>
                     <li class="my-2.5 pb-5">
-                        <a href="{{ route('contact') }}" class="text-white text-xs block w-[200px] text-center hover:text-[#85A7CC]"><span class="text-base font-bold">Contact</span><br>お問い合わせ</a>
+                        <a href="{{ route('products.index') }}" class="text-white text-xs block w-[200px] text-center hover:underline"><span class="text-base font-bold">Product</span><br>プロダクト</a>
+                    </li>
+                    <li class="my-2.5 pb-5">
+                        <a href="{{ route('contact') }}" class="text-white text-xs block w-[200px] text-center hover:underline"><span class="text-base font-bold">Contact</span><br>お問い合わせ</a>
                     </li>
                 </ul>
             </div>
@@ -32,10 +35,11 @@
     {{-- PCナビ --}}
     <nav class="hidden ml-auto md:block">
         <ul class="list-none flex items-center">
-            <li class="mx-3"><a href="{{ route('home') }}" class="text-xs hover:text-[#85A7CC]"><span class="text-[17px] font-bold">Home</span><br>ホーム</a></li>
-            <li class="mx-3"><a href="{{ route('blog.index') }}" class="text-xs hover:text-[#85A7CC]"><span class="text-[17px] font-bold">Blog</span><br>ブログ</a></li>
-            <li class="mx-3"><a href="{{ route('products.index') }}" class="text-xs hover:text-[#85A7CC]"><span class="text-[17px] font-bold">Product</span><br>プロダクト</a></li>
-            <li class="mx-3"><a href="{{ route('contact') }}" class="text-xs hover:text-[#85A7CC]"><span class="text-[17px] font-bold">Contact</span><br>お問い合わせ</a></li>
+            <li class="mx-3"><a href="{{ route('home') }}" class="text-xs hover:underline"><span class="text-[17px] font-bold">Home</span><br>ホーム</a></li>
+            <li class="mx-3"><a href="{{ route('about') }}" class="text-xs hover:underline"><span class="text-[17px] font-bold">About</span><br>アバウト</a></li>
+            <li class="mx-3"><a href="{{ route('blog.index') }}" class="text-xs hover:underline"><span class="text-[17px] font-bold">Blog</span><br>ブログ</a></li>
+            <li class="mx-3"><a href="{{ route('products.index') }}" class="text-xs hover:underline"><span class="text-[17px] font-bold">Product</span><br>プロダクト</a></li>
+            <li class="mx-3"><a href="{{ route('contact') }}" class="text-xs hover:underline"><span class="text-[17px] font-bold">Contact</span><br>お問い合わせ</a></li>
             <li class="mx-3">
                 <a href="https://x.com/kait_edtc" title="X" rel="noopener noreferrer" target="_blank" aria-label="X"
                    class="inline-flex items-center justify-center w-11 h-11 rounded-full border-2 border-gray-700 text-text hover:text-[#1B95E0] hover:border-white hover:shadow-[inset_0_0_0_22px_#fff] transition-all duration-300">
