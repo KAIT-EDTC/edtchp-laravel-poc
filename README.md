@@ -29,6 +29,7 @@
 
 - Docker on Windows/macOS の bind mount ではファイル変更イベントを取りこぼすことがあるため、`node`サービスはポーリング監視を有効化しています。
 - Viteアセットは Laravel 標準の `@vite(['resources/css/app.css', 'resources/js/app.js'])` で読み込み、独自の `public/hot` 分岐を避けています。
+- 本番配信されるCSS/JSは `public/build` を参照するため、デプロイ前に必ず Docker コンテナ内で `docker compose exec node npm run build` を実行して最新化してください。
 
 ### 変更が反映されないとき
 
