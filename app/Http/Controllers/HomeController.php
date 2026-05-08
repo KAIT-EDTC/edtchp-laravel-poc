@@ -12,8 +12,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        $latestArticles = array_slice($this->content->list('blog'), 0, 5);
+        $blogItems = $this->content->list('blog', null, 'news');
+        $productItems = $this->content->list('products');
 
-        return view('home', compact('latestArticles'));
+        $latestArticles = array_slice($blogItems, 0, 4);
+        $latestProducts = array_slice($productItems, 0, 3);
+
+        return view('home', compact('latestArticles', 'latestProducts'));
     }
 }
