@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -29,6 +30,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // 本番で public/hot を誤参照しないよう、環境ごとに hot ファイル参照先を固定する
+        Vite::useHotFile(
+            $this->app->environment('local')
+                ? public_path('hot')
+                : storage_path('framework/vite.hot')
+        );
+
         if ($this->app->environment('production')) {
             \Illuminate\Support\Facades\URL::forceScheme('https');
         }
