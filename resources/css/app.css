@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @theme {
-    --font-sans: "Noto Sans JP", sans-serif;
+    --font-sans: "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
     --color-main: #0f6fa6;
     --color-bg: #e6e6e6;
     --color-bg-alt: #F8F7F3;
