@@ -1,7 +1,7 @@
 ---
 title: サンプルプロダクト
 date: "2025-04-01"
-thumbnail: sample.webp
+thumbnail: LineTracer.webp
 headline: 子ども向けプログラミング教材
 maker: EDTC
 target: 小学生

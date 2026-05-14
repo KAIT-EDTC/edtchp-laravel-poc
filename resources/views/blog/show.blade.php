@@ -29,10 +29,6 @@
             @endif
         </header>
 
-        @if ($article['thumbnail'])
-            <img src="{{ asset('blog-img/' . $article['thumbnail']) }}" alt="{{ $article['title'] }}" class="w-full rounded-lg mb-8 aspect-video object-cover">
-        @endif
-
         <div class="prose prose-gray max-w-none">
             {!! $article['html'] !!}
         </div>
